@@ -1,0 +1,153 @@
+.im {
+    display: inline;
+    width: 400px;
+    height: auto;
+}
+.btn-submit
+{
+  bottom:20px;
+  right:20px;
+  background-color:#46b8da;
+  border-radius: 10%;
+  color:#fff;
+  border: transparent;
+   position: absolute;
+    height: 60px;
+    width: 130px;
+	font-size: 60px;
+
+  
+}
+.style2-addbtn
+{
+    background-color: rgba(0,0,0,0.8);
+    color:#fff;
+    border-radius: 50%;
+    border: transparent;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+	bottom:30px;
+    left:65px;
+	font-size: 60px;
+}
+
+.toolline
+{
+    border-radius: 5%;
+    border-color: transparent;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    text-align: center;
+    padding-bottom: 0px;
+    margin: 0;
+    float: left;
+}
+.style2-btn-edit {
+    color: #46b8da;
+    background-color: #fff;
+    border-color: #46b8da;
+    float: right;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+	margin-right:5px;
+}
+.style2-btn-del {
+    color: #F9C;
+    background-color: #fff;
+    border-color: #F9C;
+    float: right;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+	margin-right:5px;
+}
+.style2-btn-more {
+    color: #75ce66;
+    background-color: #fff;
+    border-color: #75ce66;
+    float: right;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+	margin-right:5px;
+}
+.photo{
+	width: 100px;
+	height: 100px;
+    background: transparent;
+    opacity: 0.8;
+    right: 20px;
+    overflow: hidden;
+	border-radius: 50%;
+    /*border:#C6FFD5 10px solid;*/
+}
+
+.profileframe{
+    float: right;
+    height: 400px;
+    padding: 100px 20px 10px 10px;
+    color: #fff;
+    font-weight: normal;
+    background: transparent;
+    text-transform: uppercase;
+    text-align: center;
+}
+.profilefont{
+	font-size: 15px;
+	line-height: 12px;
+	text-transform: lowercase;
+}
+#thumbContainter .container {
+    padding:15px 0 0 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+.box {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    overflow: hidden;
+	height:143px;
+	width: 170px;
+}
+.box .simple-caption {
+    height: 25px;
+    width: 170px;
+    display: block;
+    line-height: 18pt;
+    text-align: center;
+}
+.box .caption {
+    background-color: rgba(0,0,0,0.6);
+    position: absolute;
+    color: #fff;
+    z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+}
+.box:hover .simple-caption {
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+
+.classname{
+	font-weight:bold;
+	font-size:18px;
+	padding:5px 0 5px 0;
+}
+.resultname{
+	padding-left:15px;
+	font-size:15px;
+}
+.modal-backdrop {
+    z-index: 9998;
+    background-color: #000;
+}

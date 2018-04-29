@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<?php
+session_start();
+include("logincheck.php");
+?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<?php
+include("mysql_connect.inc.php");
+$MemberNo = $_SESSION['MemberNo'];
+$sql = "SELECT * FROM profile where MemberNo = '$MemberNo'";
+$result = mysql_query($sql);
+$profilerow = mysql_fetch_row($result);
+$result = mysql_query("SELECT * FROM image where ImageNo = '$profilerow[3]'");
+$imagerow = mysql_fetch_row($result);
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="Shortcut Icon" type="image/x-icon" href="image/favicon.ico" />
+
+
+    <title>個人資料 - ETrace</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage fixed header and footer." />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fixed, header,footer, absolute, positioned,css" />
+	<meta name="Resource-type" content="Document" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+	<!-- Custom styles for this template -->
+			<link href="css/theme.css" rel="stylesheet">
+		<!-- Bootstrap core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap theme -->
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css"/>
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
+	<link rel="stylesheet" type="text/css" href="css/animate.css" />
+
+	
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+  
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage'],
+				sectionsColor: ['#22b14c', 'rgba(134,205,215,.7)', 'rgba(255,187,187,.7)', 'rgba(134,205,215,.7)', 'rgba(255,187,187,.7)', 'rgba(134,205,215,.7)'],
+				css3: true,
+				continuousVertical: true,
+				navigation: true,
+				navigationPosition: 'right',
+				navigationTooltips: ['個人介紹', '生日 / 年齡', '籍貫 / 現居地', '興趣', '專長', '學歷']
+			});
+		});
+	</script>
+	<script src="picturefill.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.php"><img src="image/logo.png" height="50px" ></a>
+			</div> 
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+				<ul class="nav navbar-nav navbar-right">					
+					<?php
+					if (isset($_SESSION['UserName'])) {
+						include("menu.php");
+					} else {
+						echo "<li><a href=\"login.php\">登入</a></li>\n";
+					}
+					?>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	 <div id="profile2-edit-btn">
+         <a class="btn p2-btn-edit" href="profile1.php">修改</a>
+     </div>
+
+	<div id="fullpage">
+		<div class="section " id="section0">
+			<div class="intro">
+				<div class="row">
+                  <div class="col-md-offset-1 col-md-4 col-sm-12 col-xs-12">
+				     <div class="row">
+							 <?php
+							 echo '<img src="'."$imagerow[4]".'" id="selfphoto">';
+							 ?>
+					  </div>
+					  <div class="row">
+					  </br>
+						<!--中文名字-->
+							 <h1 style="text-align:center;">								
+								<?php
+								echo "$profilerow[0]";
+								?></h1>	
+					  	<!--英文名字-->
+							 <p style="text-align:center;width:90%;" id="profile-name">
+								<?php
+								echo "$profilerow[4]";
+								?></p>
+					  	<!--email-->
+							 <p id="profile-name"><?php
+								$email = $_SESSION['UserName'];
+								echo "$email";
+								?></p>		
+					  </div>
+				  <picture class="section1-img">
+					    <source srcset="image/contact-middle.png" media="(min-width: 990px)" >
+					    <source srcset="image/contact-middle.png" media="(min-width: 720px)">
+					    <source srcset="image/contact-small.png" media="(min-width: 500px)">
+					    <source srcset="image/contact-small.png" media="(max-width: 480px)">
+					    <img src="image/contact-small.png" alt="">
+				  </picture>
+				  </div>
+				  <div class="col-md-6 col-sm-12 col-xs-12" style="text-align:center;">				  	  
+					<div id="selfintro">
+					  <p id="profile-intro" class="col-md-10 col-md-offset-2 scroll" style="word-wrap:break-word;">
+					   	   <!--自我介紹-->
+						   <?php
+                            echo "$profilerow[11]";
+                            ?>
+					  </p>
+					 </div>					 
+				  </div>
+				 </div>
+			</div>
+		</div>
+		<div class="section" id="section1">
+			<div class="intro">
+				<div class="row">
+				  <div class="col-md-offset-1 col-md-5 col-sm-12">
+				  <div class="row">
+				  	<h1 id="bd">
+						<!--生日-->
+						<?php
+						echo "$profilerow[5]";
+						?></h1>
+					<h1 id="age">
+						<!--年齡-->
+						<?php
+						if($profilerow[5]!=NULL){
+						$birthDate = explode("-", $profilerow[5]);
+						$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]))) > date("md") ? ((date("Y") - $birthDate[0]) - 1) : (date("Y") - $birthDate[0]));
+						echo "$age" . '歲';
+						}
+						?></h1>
+					</div>					
+				  </div>
+				  <div class="col-md-5 col-sm-12">
+				      <picture>
+					    <source srcset="image/egg6-large.png" media="(min-width: 990px)">
+					    <source srcset="image/egg6-middle.png" media="(min-width: 720px)">
+					    <source srcset="image/egg6-small.png" media="(min-width: 500px)">
+					    <source srcset="image/egg6-small.png" media="(max-width: 480px)">
+					    <img src="image/egg6-small.png" alt="">
+					  </picture>					  
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="section2">
+			<div class="intro">
+				<div class="row">
+				  <div class="col-md-offset-1 col-md-5 col-sm-12">
+				      <picture>
+					    <source srcset="image/mark-large.png" media="(min-width: 990px)">
+					    <source srcset="image/mark-middle.png" media="(min-width: 720px)">
+					    <source srcset="image/mark-small.png" media="(min-width: 500px)">
+					    <source srcset="image/mark-small.png" media="(max-width: 480px)">
+					    <img src="image/mark-small.png" alt="">
+					  </picture>
+				  </div>
+				  <div class="col-md-5 col-sm-12">
+				    <!--籍貫/現居地-->
+				  	<h1 id="fromandlive">來自<?php
+						echo "$profilerow[8]";
+						?></h1>
+					<h1>現居<?php
+						echo "$profilerow[7]";
+						?></h1>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="section3">
+			<div class="intro">
+				<div class="row ">
+
+				  <div class="col-md-offset-1 col-md-2 col-sm-12">
+				      <picture>
+					    <source srcset="image/interest-large.png" media="(min-width: 990px)">
+					    <source srcset="image/interest-middle.png" media="(min-width: 720px)">
+					    <source srcset="image/interest-small.png" media="(min-width: 500px)">
+					    <source srcset="image/interest-small.png" media="(max-width: 480px)">
+					    <img src="image/interest-small.png" alt="">
+					  </picture>
+				  </div>
+				  <div  class="col-md-6 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+					<!--興趣-->
+				  	<h1 id="interest" class="scroll"><?php
+                        echo "$profilerow[9]";
+                        ?></h1>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="section4">
+			<div class="intro">
+				<div class="row">
+				  <div class="col-md-offset-1 col-md-2 col-sm-12">
+				      <picture>
+					    <source srcset="image/skill-large.png" media="(min-width: 990px)">
+					    <source srcset="image/skill-middle.png" media="(min-width: 720px)">
+					    <source srcset="image/skill-small.png" media="(min-width: 500px)">
+					    <source srcset="image/skill-small.png" media="(max-width: 480px)">
+					    <img src="image/skill-small.png" alt="">
+					  </picture>
+				  </div>
+				  <div class="col-md-6 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+					<!--技能-->
+				  	<h1 id="skill" class="scroll"><?php
+                        echo "$profilerow[10]";
+                        ?></h1>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<div class="section" id="section5">
+			<div class="intro">
+				<div class="row">
+				  <div class="col-md-5 col-sm-12">
+					<!--學歷-->
+				  	<h1 id="edu"><?php
+                        echo "$profilerow[2]";
+                        ?></h1>
+				  </div>
+				  <div class="col-md-6 col-sm-12">
+				      <picture>
+					    <source srcset="image/education-figure-large.png" media="(min-width: 990px)">
+					    <source srcset="image/education-figure-middle.png" media="(min-width: 720px)">
+					    <source srcset="image/education-figure-small.png" media="(min-width: 500px)">
+					    <source srcset="image/education-figure-small.png" media="(max-width: 480px)">
+					    <img src="image/education-figure-small.png" alt="">
+					  </picture>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/friends.js"></script>
+    <script type="text/javascript" src="js/storyjs-embed.js"></script>
+	<script type="text/javascript" src="js/noty/packaged/jquery.noty.packaged.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TimelineJS Example</title>
+    <meta charset="utf-8">
+    <meta name="description" content="TimelineJS Embed">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- CSS-->
+    <link rel="stylesheet" href="css/timeline.css?v1">
+    <!--FONT-->
+    <link rel="stylesheet" href="css/fonts/font.default.css?v1">
+    <!-- Style-->
+    <style>
+      html, body {
+      	height:100%;
+      	width:100%;
+      	padding: 0px;
+      	margin: 0px;
+      }
+      .tl-timeline {
+      	
+      }
+      .slide-tag {font-size:11px;font-weight:bold;color:#fff;background-color:#ccc;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;vertical-align:baseline;white-space:nowrap;line-height:11px;padding:1px 3px 1px;margin-left:7.5px;margin-bottom:7.5px}
+    </style>
+    <!-- HTML5 shim, for IE6-8 support of HTML elements-->
+    <!--if lt IE 9
+    script(src='https://html5shim.googlecode.com/svn/trunk/html5.js')
+    
+    -->
+  </head>
+  <body>
+    <div id="timeline"></div>
+    <!-- JavaScript-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>    
+    <script src="js/timeline.js"></script>
+    <script>
+      var timeline = new TL.Timeline('timeline', 'jsonfile.php', {
+      	theme_color: "#288EC3",
+      	ga_property_id: "UA-27829802-4"
+      });
+      $(document).keydown(function(e) {        
+        if(e.which == 39) {
+         $('.tl-slidenav-next').trigger('click');
+        }
+        if(e.which == 37){
+         $('.tl-slidenav-previous').trigger('click');
+        }
+      });
+    </script>
+  </body>
+</html>
